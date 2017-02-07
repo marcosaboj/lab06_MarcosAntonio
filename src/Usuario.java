@@ -12,4 +12,5 @@ public class Usuario {
 		this.jogos = new HashMap <>();
 		this.Saldo = 0;
 	}
+	
 }
