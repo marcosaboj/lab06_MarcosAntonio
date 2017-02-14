@@ -2,6 +2,9 @@ package Usuario;
 import java.util.HashMap;
 import java.util.Map;
 
+import exceptions.NomeInvalidoException;
+import exceptions.SaldoInvalidoException;
+import exceptions.ValorInvalidoException;
 import Jogo.Jogo;
 
 
@@ -12,20 +15,24 @@ public abstract class Usuario {
 	protected int desconto;
 	protected int x2p;
 	
-	public Usuario(String nome){
-		this.nome =  nome;
-		this.jogos = new HashMap <>();
-		this.Saldo = 0;
+	public Usuario(String nome) throws NomeInvalidoException{
+		if(!(nome.trim().equals("") || nome == null)){
+			this.nome =  nome;
+			this.jogos = new HashMap <>();
+			this.Saldo = 0;
+		}else{
+			throw new NomeInvalidoException("Nome Vazio");
+		}
 	}
 	
-	public abstract boolean comprarJogo(String nome, int valor);
+	public abstract void comprarJogo(String nome, int valor) throws ValorInvalidoException, NomeInvalidoException, SaldoInvalidoException;
 	
-	public boolean addSaldo(int valor){
+	public void addSaldo(int valor) throws SaldoInvalidoException{
 		if (valor > 0){
 			Saldo += valor;
-			return true;
+		}else{
+			throw new SaldoInvalidoException("Valor Menor ou igual a 0");
 		}
-		return false;
 	}
 	protected boolean addxp2(int valor, boolean veterano ){
 		if(veterano && valor > 0){

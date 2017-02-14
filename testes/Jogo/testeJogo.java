@@ -1,3 +1,4 @@
+package Jogo;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -7,7 +8,7 @@ public class testeJogo {
 	
 	@Before
 	public void criarjogo(){
-	jogo jogo = new jogo();
+		jogo jogo = new jogo();
 	}
 
 	@Test
