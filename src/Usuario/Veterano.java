@@ -1,17 +1,19 @@
 package Usuario;
 
+import exceptions.NomeInvalidoException;
+
 public class Veterano extends Usuario{
 	
-	public Veterano(String nome) {
+	public Veterano(String nome) throws NomeInvalidoException {
 		super(nome);
 		desconto = 20;
 		x2p = 1000;
 	}
 
 	@Override
-	public boolean comprarJogo(String nome, int valor) {
+	public void comprarJogo(String nome, int valor) {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 }
