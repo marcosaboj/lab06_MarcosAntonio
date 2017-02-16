@@ -1,9 +1,5 @@
 package Jogo;
 
 public enum Jogabilidade {
-<<<<<<< HEAD
 	ONLINE, OFFLINE, MULTIPLAYER, COOPERATIVO, COMPETITIVO;
-=======
-	ONLINE, OFFLINE, MULTIPLAYER, COOPERATIVO;
->>>>>>> 5573b1c5b1c8b2a2cf2af8830fbd2fc9539bcae1
 }

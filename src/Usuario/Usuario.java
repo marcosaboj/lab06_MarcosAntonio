@@ -2,15 +2,9 @@ package Usuario;
 import java.util.HashMap;
 import java.util.Map;
 
-<<<<<<< HEAD
 import Exceptions.NomeInvalidoException;
 import Exceptions.SaldoInvalidoException;
 import Exceptions.ValorInvalidoException;
-=======
-import exceptions.NomeInvalidoException;
-import exceptions.SaldoInvalidoException;
-import exceptions.ValorInvalidoException;
->>>>>>> 5573b1c5b1c8b2a2cf2af8830fbd2fc9539bcae1
 import Jogo.Jogo;
 
 
@@ -31,11 +25,7 @@ public abstract class Usuario {
 		}
 	}
 	
-<<<<<<< HEAD
 	public abstract void comprarJogo(Jogo jogo) throws ValorInvalidoException, NomeInvalidoException, SaldoInvalidoException;
-=======
-	public abstract void comprarJogo(String nome, int valor) throws ValorInvalidoException, NomeInvalidoException, SaldoInvalidoException;
->>>>>>> 5573b1c5b1c8b2a2cf2af8830fbd2fc9539bcae1
 	
 	public void addSaldo(int valor) throws SaldoInvalidoException{
 		if (valor > 0){
