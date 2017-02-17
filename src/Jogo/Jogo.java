@@ -1,6 +1,5 @@
 package Jogo;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import Exceptions.JogabilidadeInvalidaException;
@@ -17,7 +16,7 @@ public class Jogo {
 	private String tipo;
 	private Set<Jogabilidade> jogabilidade;
 	
-	public Jogo (String nome, double preco, Set<Jogabilidade> lista, String tipo) throws NomeInvalidoException, ValorInvalidoException{
+	public Jogo (String nome, double preco, Set<Jogabilidade> lista, String tipo) throws NomeInvalidoException, ValorInvalidoException, JogabilidadeInvalidaException{
 		
 		if(nome.trim().equals("") || nome == null){
 			throw new NomeInvalidoException("Nome invalido");
@@ -29,7 +28,11 @@ public class Jogo {
 		}else{
 			this.preco = preco;
 		}
-		this.jogabilidade = lista;
+		if(lista == null){
+			throw new JogabilidadeInvalidaException("Lista de Jogabilidades vazia");
+		}else{
+			this.jogabilidade = lista;
+		}
 		this.nome = nome;
 		this.preco = preco;
 		this.maxScore = 0;
@@ -52,6 +55,9 @@ public class Jogo {
 	}
 	public double getPreco(){
 		return this.preco;
+	}
+	public String getNome(){
+		return this.nome;
 	}
 
 }

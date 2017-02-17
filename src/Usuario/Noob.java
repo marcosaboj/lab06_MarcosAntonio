@@ -1,25 +1,29 @@
 package Usuario;
 
+import Exceptions.JogoInvalidoException;
 import Exceptions.NomeInvalidoException;
-import Exceptions.SaldoInvalidoException;
-import Exceptions.ValorInvalidoException;
 import Jogo.Jogo;
 
 public class Noob extends Usuario {
 	
 	public Noob(String nome) throws NomeInvalidoException {
 		super(nome);
-		desconto = 10;
+		desconto = 0.10;
 		x2p = 0;
+		ptX2PReal = 10;
 		
 	}
 
 	@Override
-	public void comprarJogo(Jogo jogo) throws ValorInvalidoException, NomeInvalidoException, SaldoInvalidoException {
-		if (jogo.getPreco() <= 0){
-			throw new ValorInvalidoException("Valor menor ou igual a 0");
-		}else if(this.Saldo >= jogo.getPreco()){
-			throw new SaldoInvalidoException("Saldo Insuficiente");
+	public void comprarJogo(Jogo jogo) throws JogoInvalidoException{
+		if(jogo == null){
+			throw new JogoInvalidoException("Jogo nulo!");
+		}else{
+			if(jogo.getPreco() <= saldo){
+				saldo -= jogo.getPreco() - (jogo.getPreco() * desconto);
+				jogos.put(jogo.getNome(), jogo);
+				x2p += (jogo.getPreco() * ptX2PReal);
+			}
 		}
 	}
 
