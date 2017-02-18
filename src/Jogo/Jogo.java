@@ -6,17 +6,17 @@ import Exceptions.JogabilidadeInvalidaException;
 import Exceptions.NomeInvalidoException;
 import Exceptions.ValorInvalidoException;
 
-public class Jogo {
+public abstract class Jogo {
 	
-	private String nome;
-	private double preco;
-	private int maxScore;
-	private int qtdJogadas;
-	private int zerado;
-	private String tipo;
-	private Set<Jogabilidade> jogabilidade;
+	protected String nome;
+	protected double preco;
+	protected int maxScore;
+	protected int qtdJogadas;
+	protected int zerado;
+	protected int x2p;
+	protected Set<Jogabilidade> jogabilidade;
 	
-	public Jogo (String nome, double preco, Set<Jogabilidade> lista, String tipo) throws NomeInvalidoException, ValorInvalidoException, JogabilidadeInvalidaException{
+	public Jogo (String nome, double preco, Set<Jogabilidade> lista) throws NomeInvalidoException, ValorInvalidoException, JogabilidadeInvalidaException{
 		
 		if(nome.trim().equals("") || nome == null){
 			throw new NomeInvalidoException("Nome invalido");
@@ -40,19 +40,8 @@ public class Jogo {
 		this.qtdJogadas = 0;
 	}
 	
-	public int registraJogada(int score, boolean concluiu) throws ValorInvalidoException{
-		this.qtdJogadas ++;
-		if(score <= 0){
-			throw new ValorInvalidoException("Score invalido");
-		}
-		if(score > this.maxScore){
-			this.maxScore = score;
-		}
-		if(concluiu){
-			this.zerado ++;
-		}
-		return 0;
-	}
+	public abstract int registraJogada(int score, boolean concluiu) throws ValorInvalidoException;
+	
 	public double getPreco(){
 		return this.preco;
 	}
