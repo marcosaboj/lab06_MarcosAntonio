@@ -38,6 +38,8 @@ public class Loja {
 	}
 	public void imprimirInfo(){
 		System.out.println("=== Central P2-CG ===");
-		
+		for (Usuario usuario : usuarios.values()) {
+			System.out.println(usuario.toString());
+		} 
 	}
 }

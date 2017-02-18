@@ -29,4 +29,14 @@ public class Plataforma extends Jogo {
 		}
 		return 0;
 	}
+	@Override
+	public String toString(){
+		String info = "";
+		String pl = System.lineSeparator();
+		info += "+ "+ this.nome +" - Plataforma:" + pl;
+		info += "==> Jogou " + this.qtdJogadas + "vez(es)" + pl;
+		info += "==> Zerou " + this.zerado + "vez(es)" + pl;
+		info += "==> Maior score: " + this.maxScore + pl;
+		return info;
+	}
 }

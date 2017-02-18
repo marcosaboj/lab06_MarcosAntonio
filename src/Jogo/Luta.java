@@ -5,7 +5,6 @@ import java.util.Set;
 import Exceptions.JogabilidadeInvalidaException;
 import Exceptions.NomeInvalidoException;
 import Exceptions.ValorInvalidoException;
-import Usuario.Usuario;
 
 public class Luta extends Jogo {
 	
@@ -29,5 +28,15 @@ public class Luta extends Jogo {
 			this.zerado ++;
 		}
 		return ptx2p;
+	}
+	@Override
+	public String toString(){
+		String info = "";
+		String pl = System.lineSeparator();
+		info += "+ "+ this.nome +" - Luta:" + pl;
+		info += "==> Jogou " + this.qtdJogadas + "vez(es)" + pl;
+		info += "==> Zerou " + this.zerado + "vez(es)" + pl;
+		info += "==> Maior score: " + this.maxScore + pl;
+		return info;
 	}
 }

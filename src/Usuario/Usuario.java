@@ -10,7 +10,9 @@ import Jogo.Jogo;
 
 
 public abstract class Usuario {
+	
 	protected String nome;
+	protected String login;
 	protected Map<String, Jogo> jogos;
 	protected int saldo;
 	protected int ptX2PReal;
@@ -52,13 +54,32 @@ public abstract class Usuario {
 	public String getNome() {
 		return this.nome;		
 	}
+	public String getLogin(){
+		return this.login;
+	}
 	
+	@Override
+	public String toString(){
+		String info = "";
+		double totalPreco = 0;
+		String pl = System.lineSeparator();
+		info += this.getLogin() + pl;
+		info += this.getNome() + " - " + "Jogador Noob" + pl;
+		info += "Lista de Jogos:" + pl;
+		for (Jogo jogo : jogos.values()) {
+			info += jogo.toString();
+			totalPreco += jogo.getPreco();
+		}
+		info += "Total de preço dos jogos: R$ " + totalPreco + pl;
+		info += "--------------------------------------------";
+		return info;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		return result;
 	}
 
@@ -67,7 +88,6 @@ public abstract class Usuario {
 		if(!(obj instanceof Usuario))
 			return false;
 		Usuario novo = (Usuario) obj;
-		return novo.getNome().equals(getNome());
+		return novo.getLogin().equals(getLogin());
 	}
-	
 }

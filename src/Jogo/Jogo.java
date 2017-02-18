@@ -48,5 +48,8 @@ public abstract class Jogo {
 	public String getNome(){
 		return this.nome;
 	}
+	
+	@Override
+	public abstract String toString();
 
 }
