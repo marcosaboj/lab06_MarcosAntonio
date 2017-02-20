@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Exceptions.JogoInvalidoException;
+import Exceptions.LoginInvalidoException;
 import Exceptions.NomeInvalidoException;
 import Exceptions.SaldoInvalidoException;
 import Exceptions.ValorInvalidoException;
@@ -14,19 +15,26 @@ public abstract class Usuario {
 	protected String nome;
 	protected String login;
 	protected Map<String, Jogo> jogos;
-	protected int saldo;
+	protected double saldo;
 	protected int ptX2PReal;
 	protected double desconto;
 	protected int x2p;
 	
-	public Usuario(String nome) throws NomeInvalidoException{
+	public Usuario(String nome, String login) throws NomeInvalidoException, LoginInvalidoException{
 		if(!(nome.trim().equals("") || nome == null)){
 			this.nome =  nome;
-			this.jogos = new HashMap <>();
-			this.saldo = 0;
+			
+			
 		}else{
 			throw new NomeInvalidoException("Nome Vazio");
 		}
+		if(!(login.trim().equals("") || login == null)){
+			this.login = login;
+		}else{
+			throw new LoginInvalidoException("Login Vazio");
+		}
+		this.jogos = new HashMap <>();
+		this.saldo = 0;
 	}
 	
 	public abstract void comprarJogo(Jogo jogo) throws JogoInvalidoException;
@@ -38,22 +46,36 @@ public abstract class Usuario {
 			throw new SaldoInvalidoException("Valor Menor ou igual a 0");
 		}
 	}
-	public void registrarJogada(String nome, int score, boolean concluiu) throws ValorInvalidoException{
+	public void registrarJogada(String nome, int score, boolean concluiu) throws ValorInvalidoException, NomeInvalidoException{
+		if(nome.trim().equals("") || nome == null){
+			throw new NomeInvalidoException("Nome de jogo invalido");
+		}
+		if(score <= 0){
+			throw new ValorInvalidoException("Score invalido");
+		}
 		if(jogos.containsKey(nome)){
 			x2p += jogos.get(nome).registraJogada(score, concluiu);
 		}
 	}
-	protected boolean addxp2(int valor, boolean veterano ){
-		if(veterano && valor > 0){
-			
-		}else{
-			
-		}
-		return false;
-	}
 	public String getNome() {
 		return this.nome;		
 	}
+	public Map<String, Jogo> getJogos() {
+		return jogos;
+	}
+
+	public double getSaldo() {
+		return saldo;
+	}
+
+	public int getPtX2PReal() {
+		return ptX2PReal;
+	}
+
+	public int getX2p() {
+		return x2p;
+	}
+
 	public String getLogin(){
 		return this.login;
 	}

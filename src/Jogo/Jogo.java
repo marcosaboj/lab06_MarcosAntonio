@@ -5,6 +5,7 @@ import java.util.Set;
 import Exceptions.JogabilidadeInvalidaException;
 import Exceptions.NomeInvalidoException;
 import Exceptions.ValorInvalidoException;
+import Usuario.Usuario;
 
 public abstract class Jogo {
 	
@@ -40,7 +41,7 @@ public abstract class Jogo {
 		this.qtdJogadas = 0;
 	}
 	
-	public abstract int registraJogada(int score, boolean concluiu) throws ValorInvalidoException;
+	public abstract int registraJogada(int score, boolean concluiu) ;
 	
 	public double getPreco(){
 		return this.preco;
@@ -51,5 +52,23 @@ public abstract class Jogo {
 	
 	@Override
 	public abstract String toString();
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Jogo))
+			return false;
+		Jogo novo = (Jogo) obj;
+		return novo.getNome().equals(getNome());
+	}
+	
+	
 
 }

@@ -15,11 +15,8 @@ public class RPG extends Jogo{
 	}
 	
 	@Override 
-	public int registraJogada(int score, boolean concluiu) throws ValorInvalidoException{
+	public int registraJogada(int score, boolean concluiu) {
 
-		if(score <= 0){
-			throw new ValorInvalidoException("Score invalido");
-		}
 		this.qtdJogadas ++;
 		if(score > this.maxScore){
 			this.maxScore = score;
